@@ -1,12 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/i18n'],
+  modules: ['@nuxtjs/strapi', '@pinia/nuxt', 'pinia-plugin-persistedstate/nuxt', '@nuxtjs/i18n'],
   devtools: {
     enabled: true,
 
     timeline: {
       enabled: true,
     },
+  },
+  runtimeConfig: {
+    public: {
+      strapi: {
+        url: process.env.STRAPI_URL || 'http://localhost:1337',
+        version: 'v5',
+        prefix: '/api',
+      },
+    },
+  },
+
+  strapi: {
+    url: process.env.STRAPI_URL || 'http://localhost:1337',
+    version: 'v5',
+    prefix: '/api',
   },
 
   i18n: {
